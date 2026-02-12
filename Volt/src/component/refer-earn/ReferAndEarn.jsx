@@ -13,11 +13,14 @@ const ReferAndEarn = () => {
         </div>
         
         <div className="flex items-center gap-3">
-          <button className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors">
+          {/* Button 1: Refer Lead - Updated to Purple */}
+          <button className="bg-[rgb(114,46,209)]  text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors">
             <Plus size={16} />
             Refer a Real Estate Lead
           </button>
-          <button className="bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm">
+          
+          {/* Button 2: Credits - Updated to Purple */}
+          <button className="bg-[rgb(114,46,209)]  text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm transition-colors">
             <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-yellow-700 text-[10px] font-bold">C</div>
             Credits
           </button>
@@ -41,7 +44,7 @@ const ReferAndEarn = () => {
         {/* Right Side: Steps Card */}
         <div className="bg-white rounded-xl p-6 shadow-sm max-w-md w-full">
           <div className="space-y-6">
-            <StepItem number="1" text="Send the referral to Huspy" />
+            <StepItem number="1" text="Send the referral to Xoto" />
             <StepItem number="2" text="Wait for the deal to complete" />
             <StepItem number="3" text="Earn instantly when the commission is received" />
           </div>
@@ -60,11 +63,11 @@ const ReferAndEarn = () => {
           <div className="absolute inset-0 p-6 opacity-30 blur-[2px] pointer-events-none select-none overflow-hidden">
              {/* Fake Header */}
              <div className="grid grid-cols-5 gap-4 mb-6 text-xs font-bold text-gray-400 uppercase">
-                <div>Name</div>
-                <div>Phone number</div>
-                <div>Market Type</div>
-                <div>City</div>
-                <div>Status</div>
+               <div>Name</div>
+               <div>Phone number</div>
+               <div>Market Type</div>
+               <div>City</div>
+               <div>Status</div>
              </div>
              {/* Fake Rows */}
              {[1, 2, 3, 4].map((i) => (

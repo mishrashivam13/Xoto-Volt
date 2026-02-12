@@ -22,7 +22,8 @@ const DocumentsCenter = () => {
           <span className="font-medium text-slate-900">Documents center</span>
         </div>
         
-        <button className="bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm">
+        {/* Credits Button - Updated to Purple */}
+        <button className="bg-[rgb(114,46,209)] hover:bg-slate-800 text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm transition-colors">
           <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-yellow-700 text-[10px] font-bold">C</div>
           Credits
         </button>

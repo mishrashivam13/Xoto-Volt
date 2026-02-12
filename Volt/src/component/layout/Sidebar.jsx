@@ -15,14 +15,12 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
     >
       {/* Header Logo */}
       <div className={`p-4 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} h-20`}>
-        {/* Logo sirf tab dikhega jab sidebar full ho */}
         {!isCollapsed && (
           <div className="font-bold text-xl tracking-tight">
              <img src={Img} alt="Volt Logo" className="w-28" />
           </div>
         )}
         
-        {/* Hamburger Menu Toggle */}
         <button 
           onClick={toggleSidebar}
           className="p-2 rounded hover:bg-white/10 text-gray-300 hover:text-white transition-colors"
@@ -31,8 +29,9 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
         </button>
       </div>
 
-      {/* Navigation Links */}
-      <div className="flex-1 overflow-y-auto py-4 px-3 space-y-6 scrollbar-hide">
+      {/* --- UPDATE HERE: Navigation Links Section --- */}
+      {/* मैंने यहाँ [&::-webkit-scrollbar]:hidden (Chrome/Safari) और [scrollbar-width:'none'] (Firefox) add किया है */}
+      <div className="flex-1 overflow-y-auto py-4 px-3 space-y-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
         
         {/* Workspaces Section */}
         <div>
@@ -80,7 +79,7 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   );
 };
 
-// Helper Component
+// Helper Component (Same as before)
 const NavItem = ({ to, icon, label, isCollapsed }) => (
   <NavLink 
     to={to} 
@@ -88,8 +87,8 @@ const NavItem = ({ to, icon, label, isCollapsed }) => (
       `flex items-center gap-3 px-3 py-3 rounded-xl cursor-pointer transition-all duration-200 group relative
       ${isCollapsed ? 'justify-center' : ''}
       ${isActive 
-          ? 'bg-white/10 text-white shadow-inner'  // Active Style (Glass effect)
-          : 'text-gray-400 hover:bg-white/5 hover:text-white' // Inactive Style
+          ? 'bg-white/10 text-white shadow-inner'
+          : 'text-gray-400 hover:bg-white/5 hover:text-white'
       }`
     }
   >
@@ -99,12 +98,10 @@ const NavItem = ({ to, icon, label, isCollapsed }) => (
           {icon}
         </span>
         
-        {/* Label - Sirf tab dikhega jab collapsed NAHI ho */}
         {!isCollapsed && (
           <span className="text-sm font-medium">{label}</span>
         )}
 
-        {/* Collapsed Mode Tooltip (Optional: Hover pe naam dikhane ke liye) */}
         {isCollapsed && (
           <div className="absolute left-full ml-4 px-2 py-1 bg-slate-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none shadow-xl border border-slate-700">
             {label}
