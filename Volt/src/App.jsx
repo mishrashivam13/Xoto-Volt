@@ -1,13 +1,13 @@
 // src/App.jsx
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Layout from './components/layout/Layout';
+import Layout from './component/layout/Layout';
 
 // Pages Import
-import ClientHeader from './components/clients/ClientHeader';
-import ClientTable from './components/clients/ClientTable';
-import ProposalHeader from './components/proposals/ProposalHeader';
-import ProposalTable from './components/proposals/ProposalTable';
+import ClientHeader from './component/clients/ClientHeader';
+import ClientTable from './component/clients/ClientTable';
+import ProposalHeader from './component/proposals/ProposalHeader';
+import ProposalTable from './component/proposals/ProposalTable';
 
 // Wrapper Components for Clean Routes
 const ClientsPage = () => (
