@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // 1. Import useNavigate
 import { Play, Volume2, Maximize, MoreVertical, Settings } from 'lucide-react';
 
 const Tutorials = () => {
+  const navigate = useNavigate(); // 2. Initialize hook
+
   return (
     <div className="w-full">
       {/* Top Header */}
@@ -12,7 +15,11 @@ const Tutorials = () => {
           <span className="font-medium text-slate-900">Tutorials</span>
         </div>
         
-        <button className="bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm">
+        {/* 3. Updated Button with onClick */}
+        <button 
+          onClick={() => navigate('/credits')} // Navigate to /credits
+          className="bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm hover:bg-gray-50 transition-colors active:scale-95 transform"
+        >
           <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-yellow-700 text-[10px] font-bold">C</div>
           Credits
         </button>
@@ -33,7 +40,6 @@ const Tutorials = () => {
           description="A walkover of our new and improved portal"
           duration="2:51"
           thumbnail={
-            // Mock UI for Dashboard Thumbnail
             <div className="w-full h-full bg-slate-50 p-4 flex gap-2 overflow-hidden">
                <div className="w-16 h-full bg-white rounded-lg shadow-sm"></div>
                <div className="flex-1 flex flex-col gap-2">
@@ -53,19 +59,17 @@ const Tutorials = () => {
           description="Learn how to use and earn credits to make the most out of your cases!"
           duration="1:12"
           thumbnail={
-            // Mock UI for Credits Thumbnail
             <div className="w-full h-full bg-black flex flex-col items-center justify-center">
                <div className="text-4xl font-serif italic text-white tracking-wide">
                  earn <span className="not-italic font-sans">credits</span>
                </div>
-               {/* Gold Coins Mock */}
                <div className="absolute w-12 h-12 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-600 top-1/2 left-1/3 opacity-80 blur-[1px]"></div>
                <div className="absolute w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-700 bottom-1/3 right-1/3 opacity-80"></div>
             </div>
           }
         />
 
-        {/* Video 3: Create Proposal (Partial/Skeleton to match scroll look) */}
+        {/* Video 3: Create Proposal */}
         <VideoCard 
           title="Create a proposal"
           description="Review your proposal. Take a look at the proposal created from your preferences."
@@ -83,35 +87,24 @@ const Tutorials = () => {
   );
 };
 
-// Reusable Video Player Card Component
+// Reusable Video Player Card Component (No changes here, kept for completeness)
 const VideoCard = ({ title, description, duration, thumbnail }) => {
   return (
     <div className="flex flex-col gap-3 group">
-      {/* Video Container */}
       <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-        
-        {/* Thumbnail Content */}
         <div className="absolute inset-0 z-0 opacity-90 group-hover:scale-105 transition-transform duration-700">
           {thumbnail}
         </div>
-
-        {/* Dark Gradient Overlay (Bottom) */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
-
-        {/* Controls Overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-4 z-20 flex flex-col gap-2">
-           {/* Progress Bar */}
            <div className="w-full h-1 bg-white/30 rounded-full overflow-hidden">
               <div className="w-1/3 h-full bg-white rounded-full"></div>
            </div>
-
-           {/* Buttons Row */}
            <div className="flex items-center justify-between text-white">
               <div className="flex items-center gap-3">
                  <button className="hover:text-gray-200"><Play size={20} fill="currentColor" /></button>
                  <span className="text-xs font-medium">0:00 / {duration}</span>
               </div>
-              
               <div className="flex items-center gap-3">
                  <button className="hover:text-gray-200"><Volume2 size={18} /></button>
                  <button className="hover:text-gray-200"><Settings size={18} /></button>
@@ -120,16 +113,12 @@ const VideoCard = ({ title, description, duration, thumbnail }) => {
               </div>
            </div>
         </div>
-
-        {/* Center Play Button (Optional - appears on hover) */}
         <div className="absolute inset-0 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
            <div className="w-14 h-14 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20">
               <Play size={24} fill="white" className="text-white ml-1" />
            </div>
         </div>
       </div>
-
-      {/* Meta Data */}
       <div>
         <h3 className="text-lg font-bold text-slate-900 leading-tight">{title}</h3>
         <p className="text-sm text-gray-500 mt-1">{description}</p>

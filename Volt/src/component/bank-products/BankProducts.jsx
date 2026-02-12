@@ -1,15 +1,14 @@
 import React from 'react';
 import { 
-  Search, ExternalLink, MessageCircle, 
-  TrendingUp, ChevronDown, Building2, 
-  Wallet, Percent 
+  TrendingUp, ChevronDown, MessageCircle
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'; // Import sahi hai
 
 // --- MOCK DATA ---
 const productsData = [
   {
     id: 1,
-    bankLogo: "EI", // Mock for Emirates Islamic
+    bankLogo: "EI", 
     bankColor: "bg-purple-100 text-purple-700",
     type: "Islamic",
     title: "Islamic · Test Product · UAE Resident · Self employed · Salesforce Integration · Primary/Resale/Handover",
@@ -23,7 +22,7 @@ const productsData = [
   },
   {
     id: 2,
-    bankLogo: "DIB", // Mock for DIB
+    bankLogo: "DIB", 
     bankColor: "bg-green-100 text-green-700",
     type: "Islamic",
     title: "Islamic · Test Product · UAE Resident · Self employed · Salesforce Integration · Primary/Resale/Handover",
@@ -37,7 +36,7 @@ const productsData = [
   },
   {
     id: 3,
-    bankLogo: "CBD", // Mock for Conventional bank
+    bankLogo: "CBD", 
     bankColor: "bg-red-100 text-red-700",
     type: "Conventional",
     title: "Conventional · Test Product · UAE Resident · Self employed · Salesforce Integration · Primary/Resale/Handover",
@@ -58,7 +57,11 @@ const FilterPill = ({ label }) => (
   </button>
 );
 
+// --- MAIN COMPONENT ---
 const BankProducts = () => {
+  // Correction: Hook yahan andar hona chahiye
+  const navigate = useNavigate();
+
   return (
     <div className="w-full">
       {/* Top Header: Breadcrumbs & Credits */}
@@ -69,10 +72,14 @@ const BankProducts = () => {
           <span className="font-medium text-slate-900">Bank products</span>
         </div>
         
-        <button className="bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm">
-          <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-yellow-700 text-[10px] font-bold">C</div>
-          Credits
-        </button>
+      {/* Credits Button - Navigates to Credits */}
+          <button 
+            onClick={() => navigate('/credits')}
+            className="bg-[#722ED1] hover:bg-[#5b24a8] text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm transition-colors active:scale-95 transform"
+          >
+            <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-yellow-700 text-[10px] font-bold">C</div>
+            Credits
+          </button>
       </div>
 
       {/* Title Section */}

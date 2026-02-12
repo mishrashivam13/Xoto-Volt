@@ -1,11 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Search, ExternalLink, MoreHorizontal, 
   FileText, Banknote, Image as ImageIcon,
   Building2
 } from 'lucide-react';
 
+    
 const BankUpdates = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-full">
       {/* Top Header: Breadcrumbs & Credits */}
@@ -16,10 +19,13 @@ const BankUpdates = () => {
           <span className="font-medium text-slate-900">Bank updates</span>
         </div>
         
-        <button className="bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm">
-          <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-yellow-700 text-[10px] font-bold">C</div>
-          Credits
-        </button>
+       <button 
+            onClick={() => navigate('/credits')}
+            className="bg-[#722ED1] hover:bg-[#5b24a8] text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm transition-colors active:scale-95 transform"
+          >
+            <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-yellow-700 text-[10px] font-bold">C</div>
+            Credits
+          </button>
       </div>
 
       {/* Main Content Container */}
@@ -32,7 +38,7 @@ const BankUpdates = () => {
              <span className="text-gray-400">Bank updates / </span>
              <span className="text-gray-600">Jul 2025</span>
           </div>
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <button className="flex items-center gap-2 px-3 py-1.5 border border-red-200 text-red-600 rounded text-sm font-medium hover:bg-red-50 transition-colors">
               <ExternalLink size={14} />
               Open in Coda
@@ -40,7 +46,7 @@ const BankUpdates = () => {
             <button className="p-1.5 text-gray-400 hover:bg-gray-100 rounded">
               <MoreHorizontal size={18} />
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Hero Banner */}
