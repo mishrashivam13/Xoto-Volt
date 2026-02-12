@@ -186,7 +186,7 @@ const ReferAndEarn = () => {
         {/* Right Side: Steps Card */}
         <div className="bg-white rounded-xl p-6 shadow-sm max-w-md w-full">
           <div className="space-y-6">
-            <StepItem number="1" text="Send the referral to Huspy" />
+            <StepItem number="1" text="Send the referral to Xoto" />
             <StepItem number="2" text="Wait for the deal to complete" />
             <StepItem number="3" text="Earn instantly when the commission is received" />
           </div>
@@ -205,11 +205,11 @@ const ReferAndEarn = () => {
           <div className="absolute inset-0 p-6 opacity-30 blur-[2px] pointer-events-none select-none overflow-hidden">
              {/* Fake Header */}
              <div className="grid grid-cols-5 gap-4 mb-6 text-xs font-bold text-gray-400 uppercase">
-                <div>Name</div>
-                <div>Phone number</div>
-                <div>Market Type</div>
-                <div>City</div>
-                <div>Status</div>
+               <div>Name</div>
+               <div>Phone number</div>
+               <div>Market Type</div>
+               <div>City</div>
+               <div>Status</div>
              </div>
              {/* Fake Rows */}
              {[1, 2, 3, 4].map((i) => (

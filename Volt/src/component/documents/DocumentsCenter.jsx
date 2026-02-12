@@ -2,7 +2,6 @@ import React from 'react';
 import { Search, ChevronDown, Building2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const navigate = useNavigate();
 
 
 // --- MOCK DATA ---
@@ -15,7 +14,9 @@ const banksData = [
   { id: 6, name: "Alma", docs: 1, color: "bg-teal-50 text-teal-700", initials: "Al" },
 ];
 
+
 const DocumentsCenter = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-full">
       {/* Top Header: Breadcrumbs & Credits */}
