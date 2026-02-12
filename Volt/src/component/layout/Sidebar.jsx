@@ -1,78 +1,115 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'; // Import NavLink
+import { NavLink } from 'react-router-dom';
+import Img from "../../assets/xoto vault.png"; // Ensure path is correct
 import { 
   Users, FileText, Briefcase, Landmark, 
   FileStack, PlayCircle, Menu, Smartphone 
 } from 'lucide-react';
 
-const Sidebar = () => {
+const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   return (
-    <div className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0 z-10 font-sans">
+    <div 
+      className={`h-screen flex flex-col fixed left-0 top-0 z-10 font-sans transition-all duration-300 
+      ${isCollapsed ? 'w-20' : 'w-64'} 
+      bg-gradient-to-b from-[#261041] to-[#1a0a2e] text-white border-r border-slate-700`}
+    >
       {/* Header Logo */}
-      <div className="p-4 flex items-center justify-between">
-        <div className="font-bold text-xl tracking-tight text-slate-900">
-          Huspy<span className="font-light text-slate-400">+</span>Brokers™
-        </div>
-        <button className="p-1 rounded hover:bg-gray-100">
-          <Menu size={20} className="text-gray-600" />
+      <div className={`p-4 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} h-20`}>
+        {/* Logo sirf tab dikhega jab sidebar full ho */}
+        {!isCollapsed && (
+          <div className="font-bold text-xl tracking-tight">
+             <img src={Img} alt="Volt Logo" className="w-28" />
+          </div>
+        )}
+        
+        {/* Hamburger Menu Toggle */}
+        <button 
+          onClick={toggleSidebar}
+          className="p-2 rounded hover:bg-white/10 text-gray-300 hover:text-white transition-colors"
+        >
+          <Menu size={24} />
         </button>
       </div>
 
       {/* Navigation Links */}
-      <div className="flex-1 overflow-y-auto py-4 px-3 space-y-6">
+      <div className="flex-1 overflow-y-auto py-4 px-3 space-y-6 scrollbar-hide">
+        
+        {/* Workspaces Section */}
         <div>
-          <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2 px-3">Workspaces</h3>
-          <div className="space-y-1">
-            {/* 'to' prop batata hai kaha jana hai */}
-            <NavItem to="/clients" icon={<Users size={18} />} label="Clients" />
-            <NavItem to="/proposals" icon={<FileText size={18} />} label="Proposals" />
-            <NavItem to="/cases" icon={<Briefcase size={18} />} label="Cases" />
+          {!isCollapsed && (
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-3">
+              Workspaces
+            </h3>
+          )}
+          <div className="space-y-2">
+            <NavItem to="/clients" icon={<Users size={20} />} label="Clients" isCollapsed={isCollapsed} />
+            <NavItem to="/proposals" icon={<FileText size={20} />} label="Proposals" isCollapsed={isCollapsed} />
+            <NavItem to="/cases" icon={<Briefcase size={20} />} label="Cases" isCollapsed={isCollapsed} />
           </div>
         </div>
 
+        {/* Tools Section */}
         <div>
-          <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2 px-3">Tools</h3>
-          <div className="space-y-1">
-            {/* Dummy links for now */}
-            <NavItem to="/bank-updates" icon={<Landmark size={18} />} label="Bank updates" />
-            <NavItem to="/bank-products" icon={<Briefcase size={18} />} label="Bank products" />
-            <NavItem to="/documents" icon={<FileStack size={18} />} label="Documents center" />
-            <NavItem to="/refer" icon={<Users size={18} />} label="Refer and Earn" />
-            <NavItem to="/tutorials" icon={<PlayCircle size={18} />} label="Tutorials" />
+          {!isCollapsed && (
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-3">
+              Tools
+            </h3>
+          )}
+          <div className="space-y-2">
+            <NavItem to="/bank-updates" icon={<Landmark size={20} />} label="Bank updates" isCollapsed={isCollapsed} />
+            <NavItem to="/bank-products" icon={<Briefcase size={20} />} label="Bank products" isCollapsed={isCollapsed} />
+            <NavItem to="/documents" icon={<FileStack size={20} />} label="Documents center" isCollapsed={isCollapsed} />
+            <NavItem to="/refer" icon={<Users size={20} />} label="Refer and Earn" isCollapsed={isCollapsed} />
+            <NavItem to="/tutorials" icon={<PlayCircle size={20} />} label="Tutorials" isCollapsed={isCollapsed} />
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="p-4 border-t border-gray-100">
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer text-blue-600">
-          <div className="bg-blue-600 text-white p-1 rounded">
-             <Smartphone size={16} />
+      <div className="p-4 border-t border-slate-700">
+        <div className={`flex items-center gap-3 p-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors ${isCollapsed ? 'justify-center' : ''}`}>
+          <div className="bg-blue-600 text-white p-2 rounded-lg shadow-lg shadow-blue-900/50">
+             <Smartphone size={18} />
           </div>
-          <span className="text-sm font-medium text-slate-700">Century Bank Brokers</span>
+          {!isCollapsed && (
+            <span className="text-sm font-medium text-gray-200">Century Bank Brokers</span>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-// Updated Helper Component using NavLink
-const NavItem = ({ to, icon, label }) => (
+// Helper Component
+const NavItem = ({ to, icon, label, isCollapsed }) => (
   <NavLink 
     to={to} 
     className={({ isActive }) => 
-      `flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-colors ${
-        isActive 
-          ? 'bg-white shadow-sm border border-gray-100 text-slate-900' // Active Style
-          : 'text-gray-500 hover:bg-gray-50 hover:text-slate-900'     // Inactive Style
+      `flex items-center gap-3 px-3 py-3 rounded-xl cursor-pointer transition-all duration-200 group relative
+      ${isCollapsed ? 'justify-center' : ''}
+      ${isActive 
+          ? 'bg-white/10 text-white shadow-inner'  // Active Style (Glass effect)
+          : 'text-gray-400 hover:bg-white/5 hover:text-white' // Inactive Style
       }`
     }
   >
-    {/* Icon ka color bhi change hoga active state ke hisab se */}
     {({ isActive }) => (
       <>
-        <span className={isActive ? 'text-slate-900' : 'text-gray-400'}>{icon}</span>
-        <span className="text-sm font-medium">{label}</span>
+        <span className={`${isActive ? 'text-white' : 'text-gray-400 group-hover:text-white'}`}>
+          {icon}
+        </span>
+        
+        {/* Label - Sirf tab dikhega jab collapsed NAHI ho */}
+        {!isCollapsed && (
+          <span className="text-sm font-medium">{label}</span>
+        )}
+
+        {/* Collapsed Mode Tooltip (Optional: Hover pe naam dikhane ke liye) */}
+        {isCollapsed && (
+          <div className="absolute left-full ml-4 px-2 py-1 bg-slate-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none shadow-xl border border-slate-700">
+            {label}
+          </div>
+        )}
       </>
     )}
   </NavLink>
