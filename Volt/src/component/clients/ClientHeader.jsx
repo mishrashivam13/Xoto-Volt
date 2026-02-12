@@ -144,7 +144,7 @@ const ClientHeader = () => {
           <p className="text-gray-500 text-sm">Manage your clients and their preferences</p>
         </div>
         <div className="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-600">
-          Total client count 15
+          Total client count 44
         </div>
       </div>
 

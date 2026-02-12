@@ -13,11 +13,14 @@ const CasesHeader = () => {
         </div>
         
         <div className="flex items-center gap-3">
-          <button className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors">
+          {/* Button 1: Create Case - Updated to Purple */}
+          <button className="bg-[rgb(114,46,209)] hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors">
             <Plus size={16} />
             Create Case
           </button>
-          <button className="bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm">
+          
+          {/* Button 2: Credits - Updated to Purple */}
+          <button className="bg-[rgb(114,46,209)] hover:bg-slate-800 text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm transition-colors">
             <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-yellow-700 text-[10px] font-bold">C</div>
             Credits
           </button>
