@@ -15,6 +15,7 @@ import BankProducts from './component/bank-products/BankProducts';
 import DocumentsCenter from './component/documents/DocumentsCenter';
 import ReferAndEarn from './component/refer-earn/ReferAndEarn';
 import Tutorials from './component/tutorials/Tutorials';
+import Credits from './component/credits/Credits';
 
 // Wrapper Components for Clean Routes
 const ClientsPage = () => (
@@ -54,6 +55,7 @@ function App() {
             <Route path="/documents" element={<DocumentsCenter />} />
             <Route path="/refer" element={<ReferAndEarn />} />
             <Route path="/tutorials" element={<Tutorials />} />
+            <Route path="/credits" element={<Credits />} />
           </Routes>
         </div>
       </Layout>

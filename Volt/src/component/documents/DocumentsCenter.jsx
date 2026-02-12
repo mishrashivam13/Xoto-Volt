@@ -1,5 +1,9 @@
 import React from 'react';
 import { Search, ChevronDown, Building2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
+const navigate = useNavigate();
+
 
 // --- MOCK DATA ---
 const banksData = [
@@ -22,10 +26,13 @@ const DocumentsCenter = () => {
           <span className="font-medium text-slate-900">Documents center</span>
         </div>
         
-        <button className="bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm">
-          <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-yellow-700 text-[10px] font-bold">C</div>
-          Credits
-        </button>
+        <button 
+            onClick={() => navigate('/credits')}
+            className="bg-[#722ED1] hover:bg-[#5b24a8] text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm transition-colors active:scale-95 transform"
+          >
+            <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-yellow-700 text-[10px] font-bold">C</div>
+            Credits
+          </button>
       </div>
 
       {/* Page Title */}
