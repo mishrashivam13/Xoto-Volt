@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Plus, Search, Calendar, ChevronDown } from 'lucide-react';
 
 const ClientHeader = () => {
+  // State to track which filter is active
+  const [activeFilter, setActiveFilter] = useState('All time');
+
   return (
     <div className="mb-6">
       {/* Top Row: Breadcrumbs & Actions */}
@@ -13,7 +16,7 @@ const ClientHeader = () => {
         </div>
         
         <div className="flex items-center gap-3">
-          <button className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors">
+          <button className="bg-[rgb(114,46,209)]  text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors">
             <Plus size={16} />
             Add new
           </button>
@@ -46,9 +49,32 @@ const ClientHeader = () => {
           />
         </div>
         
+        {/* Toggle Logic Applied Here */}
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-slate-900 text-white rounded-full text-sm font-medium">All time</button>
-          <button className="px-4 py-2 bg-gray-100 text-gray-600 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors">7 days</button>
+          
+          {/* Button 1: All time */}
+          <button 
+            onClick={() => setActiveFilter('All time')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              activeFilter === 'All time' 
+                ? 'bg-[rgb(114,46,209)] text-white' 
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            All time
+          </button>
+
+          {/* Button 2: 7 days */}
+          <button 
+            onClick={() => setActiveFilter('7 days')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              activeFilter === '7 days' 
+                ? 'bg-[rgb(114,46,209)] text-white' 
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            7 days
+          </button>
         </div>
 
         <button className="ml-auto px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-medium text-gray-600 flex items-center gap-2">
