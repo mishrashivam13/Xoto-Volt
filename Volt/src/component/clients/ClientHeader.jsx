@@ -4,18 +4,17 @@ import { Plus, Search, Calendar, ChevronDown, X } from 'lucide-react';
 
 // --- COMPONENT 1: Add Client Sidebar Form ---
 const AddClientSidebar = ({ isOpen, onClose }) => {
-  // Agar sidebar band hai to kuch mat render karo
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end isolate">
-      {/* 1. Backdrop Overlay (Click karne par band hoga) */}
+      {/* 1. Backdrop Overlay */}
       <div 
         className="absolute inset-0 bg-black/30 backdrop-blur-[2px] transition-opacity duration-300" 
         onClick={onClose}
       />
 
-      {/* 2. Sidebar Panel (Right se slide karega) */}
+      {/* 2. Sidebar Panel */}
       <div className="relative w-full max-w-[500px] bg-white h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
         
         {/* Header Section */}
@@ -32,67 +31,46 @@ const AddClientSidebar = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Form Fields Section (Scrollable) */}
+        {/* Form Fields Section */}
         <div className="flex-1 p-8 overflow-y-auto space-y-6">
-          
           {/* Row 1: First & Last Name */}
           <div className="grid grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-gray-600 mb-2">First name</label>
-              <input 
-                type="text" 
-                placeholder="E.g: John" 
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition-all placeholder:text-gray-400" 
-              />
+              <input type="text" placeholder="E.g: John" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition-all placeholder:text-gray-400" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-600 mb-2">Last name</label>
-              <input 
-                type="text" 
-                placeholder="E.g.: Gómez" 
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition-all placeholder:text-gray-400" 
-              />
+              <input type="text" placeholder="E.g.: Gómez" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition-all placeholder:text-gray-400" />
             </div>
           </div>
 
           {/* Row 2: Email */}
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-2">Email</label>
-            <input 
-              type="email" 
-              placeholder="E.g: john@gmail.com" 
-              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition-all placeholder:text-gray-400" 
-            />
+            <input type="email" placeholder="E.g: john@gmail.com" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition-all placeholder:text-gray-400" />
           </div>
 
           {/* Row 3: Phone Number */}
           <div>
-             <label className="block text-sm font-medium text-gray-600 mb-2">Phone number</label>
-             <div className="flex gap-3">
-                {/* Static Country Code */}
+              <label className="block text-sm font-medium text-gray-600 mb-2">Phone number</label>
+              <div className="flex gap-3">
                 <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-slate-900 min-w-[120px] cursor-pointer hover:bg-gray-100">
-                   <span className="text-lg">🇦🇪</span> 
-                   <span className="font-bold">+971</span>
+                    <span className="text-lg">🇦🇪</span> 
+                    <span className="font-bold">+971</span>
                 </div>
-                {/* Phone Input */}
-                <input 
-                  type="tel" 
-                  placeholder="E.g: 54371921" 
-                  className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition-all placeholder:text-gray-400" 
-                />
-                {/* Dropdown Arrow */}
+                <input type="tel" placeholder="E.g: 54371921" className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition-all placeholder:text-gray-400" />
                 <button className="p-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-500 hover:bg-gray-100">
-                   <ChevronDown size={18} />
+                    <ChevronDown size={18} />
                 </button>
-             </div>
+              </div>
           </div>
-
         </div>
 
-        {/* Footer: Add Button */}
+        {/* Footer: Add Button - UPDATED BG COLOR */}
         <div className="p-6 border-t border-gray-100 flex justify-end bg-white">
-           <button className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-lg text-sm font-bold transition-colors shadow-xl shadow-slate-900/10 active:transform active:scale-95">
-              Add client
+           <button className="bg-[rgb(114,46,209)] text-white px-8 py-3 rounded-lg text-sm font-bold transition-colors shadow-xl shadow-purple-900/10 active:transform active:scale-95">
+             Add client
            </button>
         </div>
 
@@ -105,12 +83,13 @@ const AddClientSidebar = ({ isOpen, onClose }) => {
 // --- COMPONENT 2: Main Client Header ---
 const ClientHeader = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const navigate = useNavigate(); // Navigation hook
+  const [activeFilter, setActiveFilter] = useState('All time'); // State for filters
+  const navigate = useNavigate();
 
   return (
     <div className="mb-6 relative">
       
-      {/* Sidebar ko yahan render kiya hai */}
+      {/* Sidebar Component */}
       <AddClientSidebar 
         isOpen={isSidebarOpen} 
         onClose={() => setIsSidebarOpen(false)} 
@@ -125,19 +104,20 @@ const ClientHeader = () => {
         </div>
         
         <div className="flex items-center gap-3">
-          {/* Button 1: Add New (Opens Sidebar) */}
+          {/* Button 1: Add New - UPDATED BG COLOR */}
           <button 
             onClick={() => setIsSidebarOpen(true)}
-            className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors active:scale-95 transform"
+            className="bg-[rgb(114,46,209)] 
+             text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors active:scale-95 transform"
           >
             <Plus size={16} />
             Add new
           </button>
 
-          {/* Button 2: Credits (Navigates to Page) */}
+          {/* Button 2: Credits - UPDATED BG COLOR */}
           <button 
             onClick={() => navigate('/credits')}
-            className="bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm hover:bg-gray-50 transition-colors"
+            className="bg-[rgb(114,46,209)]  text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm transition-colors"
           >
             <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center text-yellow-700 text-[10px] font-bold">C</div>
             Credits
@@ -167,9 +147,29 @@ const ClientHeader = () => {
           />
         </div>
         
+        {/* Filter Buttons with Toggle Logic and Updated Color */}
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-slate-900 text-white rounded-full text-sm font-medium">All time</button>
-          <button className="px-4 py-2 bg-gray-100 text-gray-600 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors">7 days</button>
+          <button 
+            onClick={() => setActiveFilter('All time')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              activeFilter === 'All time' 
+                ? 'bg-[rgb(114,46,209)] text-white' 
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            All time
+          </button>
+          
+          <button 
+            onClick={() => setActiveFilter('7 days')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              activeFilter === '7 days' 
+                ? 'bg-[rgb(114,46,209)] text-white' 
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            7 days
+          </button>
         </div>
 
         <button className="ml-auto px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-medium text-gray-600 flex items-center gap-2">
