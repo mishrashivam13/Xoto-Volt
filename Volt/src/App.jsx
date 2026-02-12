@@ -1,23 +1,81 @@
 // src/App.jsx
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Layout from './component/layout/Layout';
 
-// Pages Import
-import ClientHeader from './component/clients/ClientHeader';
-import ClientTable from './component/clients/ClientTable';
-import ProposalHeader from './component/proposals/ProposalHeader';
-import ProposalTable from './component/proposals/ProposalTable';
-import CasesHeader from './component/cases/CasesHeader';
-import CasesTable from './component/cases/CasesTable';
-import BankUpdates from './component/bank-updates/BankUpdates';
-import BankProducts from './component/bank-products/BankProducts';
-import DocumentsCenter from './component/documents/DocumentsCenter';
-import ReferAndEarn from './component/refer-earn/ReferAndEarn';
-import Tutorials from './component/tutorials/Tutorials';
-import Credits from './component/credits/Credits';
+import React, { Suspense, lazy } from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
-// Wrapper Components for Clean Routes
+import Layout from "./component/layout/Layout";
+
+/* ===========================
+   Lazy Loaded Pages
+=========================== */
+
+// Clients
+const ClientHeader = lazy(() =>
+  import("./component/clients/ClientHeader")
+);
+const ClientTable = lazy(() =>
+  import("./component/clients/ClientTable")
+);
+
+// Proposals
+const ProposalHeader = lazy(() =>
+  import("./component/proposals/ProposalHeader")
+);
+const ProposalTable = lazy(() =>
+  import("./component/proposals/ProposalTable")
+);
+
+// Cases
+const CasesHeader = lazy(() =>
+  import("./component/cases/CasesHeader")
+);
+const CasesTable = lazy(() =>
+  import("./component/cases/CasesTable")
+);
+
+// Other Pages
+const BankUpdates = lazy(() =>
+  import("./component/bank-updates/BankUpdates")
+);
+const BankProducts = lazy(() =>
+  import("./component/bank-products/BankProducts")
+);
+const DocumentsCenter = lazy(() =>
+  import("./component/documents/DocumentsCenter")
+);
+const ReferAndEarn = lazy(() =>
+  import("./component/refer-earn/ReferAndEarn")
+);
+const Tutorials = lazy(() =>
+  import("./component/tutorials/Tutorials")
+);
+const Credits = lazy(() =>
+  import("./component/credits/Credits")
+);
+
+/* ===========================
+   Loader Component
+=========================== */
+
+const PageLoader = () => {
+  return (
+    <div className="flex justify-center items-center h-[70vh]">
+      <p className="text-gray-500 text-sm animate-pulse">
+        Loading...
+      </p>
+    </div>
+  );
+};
+
+/* ===========================
+   Wrapper Pages
+=========================== */
+
 const ClientsPage = () => (
   <>
     <ClientHeader />
@@ -31,6 +89,7 @@ const ProposalsPage = () => (
     <ProposalTable />
   </>
 );
+
 const CasesPage = () => (
   <>
     <CasesHeader />
@@ -38,25 +97,77 @@ const CasesPage = () => (
   </>
 );
 
+/* ===========================
+   Main App
+=========================== */
+
 function App() {
   return (
     <BrowserRouter>
       <Layout>
         <div className="p-8 w-full max-w-[1400px] mx-auto">
-         <Routes>
-            <Route path="/" element={<Navigate to="/clients" replace />} />
-            <Route path="/clients" element={<ClientsPage />} />
-            <Route path="/proposals" element={<ProposalsPage />} />
-            
-            {/* Added Cases Route */}
-            <Route path="/cases" element={<CasesPage />} />
-            <Route path="/bank-updates" element={<BankUpdates />} />
-            <Route path="/bank-products" element={<BankProducts />} />
-            <Route path="/documents" element={<DocumentsCenter />} />
-            <Route path="/refer" element={<ReferAndEarn />} />
-            <Route path="/tutorials" element={<Tutorials />} />
-            <Route path="/credits" element={<Credits />} />
-          </Routes>
+
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+
+              {/* Redirect Root */}
+              <Route
+                path="/"
+                element={<Navigate to="/clients" replace />}
+              />
+
+              {/* Main Routes */}
+              <Route path="/clients" element={<ClientsPage />} />
+
+              <Route
+                path="/proposals"
+                element={<ProposalsPage />}
+              />
+
+              <Route path="/cases" element={<CasesPage />} />
+
+              <Route
+                path="/bank-updates"
+                element={<BankUpdates />}
+              />
+
+              <Route
+                path="/bank-products"
+                element={<BankProducts />}
+              />
+
+              <Route
+                path="/documents"
+                element={<DocumentsCenter />}
+              />
+
+              <Route path="/refer" element={<ReferAndEarn />} />
+
+              <Route
+                path="/tutorials"
+                element={<Tutorials />}
+              />
+
+              <Route path="/credits" element={<Credits />} />
+
+              {/* 404 Fallback */}
+              <Route
+                path="*"
+                element={
+                  <div className="text-center py-20">
+                    <h2 className="text-2xl font-semibold">
+                      404
+                    </h2>
+                    <p className="text-gray-500 mt-2">
+                      Page Not Found
+                    </p>
+                  </div>
+                }
+              />
+
+            </Routes>
+          </Suspense>
+
         </div>
       </Layout>
     </BrowserRouter>
