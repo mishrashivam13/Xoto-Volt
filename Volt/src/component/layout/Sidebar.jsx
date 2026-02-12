@@ -11,7 +11,7 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
     <div 
       className={`h-screen flex flex-col fixed left-0 top-0 z-10 font-sans transition-all duration-300 
       ${isCollapsed ? 'w-20' : 'w-64'} 
-      bg-gradient-to-b from-[#261041] to-[#1a0a2e] text-white border-r border-slate-700`}
+      bg-gradient-to-b from-[#261041] to-[#261041] text-white border-r border-slate-700`}
     >
       {/* Header Logo */}
       <div className={`p-4 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} h-20`}>
